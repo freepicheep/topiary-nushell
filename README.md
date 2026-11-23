@@ -10,7 +10,7 @@
 
 ## Status
 
-* Supposed to work well with all language features of nushell v0.111
+* Supposed to work well with all language features of nushell v0.117
   * Except for some known issues of `tree-sitter-nu`
 
 > [!NOTE]

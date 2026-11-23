@@ -49,3 +49,24 @@ try {
 } catch {} finally { 1
 
 }
+# row conditions (nushell 0.117)
+ls | where   enabled and not hidden
+ls | where not   hidden
+ls | where modified   older-than 2day
+ls | where modified newer-than   2day
+ls | where --help
+ls | any   {|x| $x.size > 1kb }
+ls | all {|x| $x.size > 1kb }
+(
+  ls
+  | where
+    size > 1kb
+)
+# match rest patterns anywhere, guards on alternatives
+match $foo {
+  [$first,   ..$mid,   $last] => 1
+  [..,   $last] => 2
+  [$first, ..] => 3
+  1 |   2 if $foo > 0 => 4
+  _ => 5
+}

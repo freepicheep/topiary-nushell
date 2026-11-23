@@ -16,3 +16,8 @@ $bar += 1
 let foo = 1 |   $in e>|   $in
 mut bar = 1 | $in  e+o>| $in
 $bar += 1 | $in  err+out>|  $in
+
+# negation, not precedence (nushell 0.117)
+let n =   -$a
+let m = -$a.b
+let c =   not $a   ==   $b

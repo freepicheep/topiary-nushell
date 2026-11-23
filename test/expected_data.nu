@@ -251,3 +251,9 @@ const table = [[a b]; [1 2] [2 [4 4]]]
 const table_no_row = [[a b]; ]
 
 mut foo: record<"a", b, "c": int, d: list<any>> = {}
+
+# negation in lists, signed radix numbers, special floats, keyword keys (nushell 0.117)
+let l = [-$a -($a + 1) -foo -]
+let nums = [-0x1F +0b101 -0o17]
+let floats = [inf -inf NaN +nan]
+let r = {true: 1 false: 2 null: 3}

@@ -9,3 +9,9 @@ FOO=BAR  BAR=BAZ  ^$cmd  --arg1=val1 -arg2  arg=value arg=($arg3)
 cat unknown.txt o+e> (null-device)
 
 $hash err>| $in + "\n" out>> $NUENV_FILE
+# dynamic builtin heads, record spread, end of options (nushell 0.117)
+%$cmd   foo
+%($cmd)   foo
+foo   ...{x: 1}   bar
+^git log   --   -x   --y
+foo --val   -$a

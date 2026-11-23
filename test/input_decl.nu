@@ -61,3 +61,13 @@ module greetings {
 
 # https://github.com/blindFS/topiary-nushell/issues/35
 def f [--arg1: number, --arg2: string] {}
+
+# decl_type (nushell 0.117)
+type   my-int   =   int
+export   type rec-t = record<a: int,   b: string>
+def g [x: my-int, y: rec-t] {
+  type   inner =  list<int>
+  $x
+}
+# extern --strict
+extern   --strict   git [...args]

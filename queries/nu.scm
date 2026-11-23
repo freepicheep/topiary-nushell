@@ -52,10 +52,20 @@
   "loop"
   "module"
   "mut"
+  "type"
   "use"
-  "where"
   (match_guard)
 ] @prepend_space @append_space
+
+;; the row condition head token (`where`, `any`, `all`) includes the single
+;; whitespace character that follows it, so a space is only appended when
+;; that character is a line break (allowed inside parentheses), which topiary
+;; drops from the token
+"where" @prepend_space
+(
+  "where" @append_space
+  (#match? @append_space "[\r\n]$")
+)
 
 (pipeline
   [
@@ -331,6 +341,13 @@
   (list_body)
   .
   rest: _ @prepend_spaced_softline
+)
+
+;; rest pattern followed by more entries: `[.., $last]`, `[$a, ..$b, $c]`
+(val_list
+  rest: _ @append_space
+  .
+  (list_body) @prepend_spaced_softline
 )
 
 (val_table
